@@ -50,7 +50,7 @@ app.get('/ingredients', cors(), (req, res, next) =>{
     res.send(ingredients);
 });
 
-  app.post("/create-payment-intent", async (req, res) => {
+/*app.post("/create-payment-intent", async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     const { items } = req.body;
       console.log("here1", items);
@@ -67,7 +67,7 @@ app.get('/ingredients', cors(), (req, res, next) =>{
       clientSecret: paymentIntent.client_secret,
       
     });
-  });
+  });*/
 
 app.listen(5000, () => {
     console.log("Running on port 5000.");
