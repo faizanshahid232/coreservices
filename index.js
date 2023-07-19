@@ -26,27 +26,8 @@ const calculateOrderAmount = (items) => {
     // people from directly manipulating the amount on the client
     return items;
   };
-  
-  app.post("/create-payment-intent", async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    const { items } = req.body;
-      console.log("here1", items);
-    // Create a PaymentIntent with the order amount and currency
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: calculateOrderAmount(items),
-      currency: "usd",
-      automatic_payment_methods: {
-        enabled: true,
-      },
-    });
-    console.log("Payment:", paymentIntent.client_secret);
-    res.send({
-      clientSecret: paymentIntent.client_secret,
-      
-    });
-  });
-  
-    const ingredients = [
+
+  const ingredients = [
     {
         "id": "1",
         "item": "Bacon"
@@ -68,6 +49,25 @@ const calculateOrderAmount = (items) => {
 app.get('/ingredients', cors(), (req, res, next) =>{
     res.send(ingredients);
 });
+
+  app.post("/create-payment-intent", async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    const { items } = req.body;
+      console.log("here1", items);
+    // Create a PaymentIntent with the order amount and currency
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: calculateOrderAmount(items),
+      currency: "usd",
+      automatic_payment_methods: {
+        enabled: true,
+      },
+    });
+    console.log("Payment:", paymentIntent.client_secret);
+    res.send({
+      clientSecret: paymentIntent.client_secret,
+      
+    });
+  });
 
 app.listen(5000, () => {
     console.log("Running on port 5000.");
