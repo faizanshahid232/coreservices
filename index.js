@@ -9,7 +9,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 var whitelist = [
-    '*',
+    'https://payment-ten-sooty.vercel.app/',
 ];
 var corsOptions = {
     origin: function(origin, callback){
