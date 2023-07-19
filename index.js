@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+app.listen(process.env.PORT || 3000);
 const cors = require('cors');
 
 var whitelist = [
@@ -36,4 +37,4 @@ app.use(cors(corsOptions));
 app.get('/ingredients', cors(), (req, res, next) =>{
     res.send(ingredients);
 });
-app.listen(6069);
+module.exports = app;
