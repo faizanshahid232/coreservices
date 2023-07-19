@@ -37,4 +37,9 @@ app.use(cors(corsOptions));
 app.get('/ingredients', cors(), (req, res, next) =>{
     res.send(ingredients);
 });
+
+app.listen(5000, () => {
+    console.log("Running on port 5000.");
+});
+
 module.exports = app;
