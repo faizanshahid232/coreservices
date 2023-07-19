@@ -52,7 +52,7 @@ app.get('/ingredients', cors(), (req, res, next) =>{
 
 const stripe = require("stripe")('sk_test_51NOz1fIi4beyPjru1XAPSAdxY1x8zH8fJMOghajQGbgq2SVgE3R2tLTj8fhoZ8kCJHq7wX0PKgstks4S6NUBwRYA006SNgD679');
 
-app.post("/create-payment-intent", async (req, res) => {
+app.post("/create-payment-intent", cors(), async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     const { items } = req.body;
       console.log("here1", items);
@@ -65,7 +65,7 @@ app.post("/create-payment-intent", async (req, res) => {
       },
     });
     console.log("Payment:", paymentIntent.client_secret);
-    res.status(200).send({
+    res.status(200).json({
       clientSecret: paymentIntent.client_secret,
       
     });
