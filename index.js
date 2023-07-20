@@ -76,7 +76,7 @@ app.get('/cors', (req, res) => {
 
 const stripe = require("stripe")('sk_test_51NOz1fIi4beyPjru1XAPSAdxY1x8zH8fJMOghajQGbgq2SVgE3R2tLTj8fhoZ8kCJHq7wX0PKgstks4S6NUBwRYA006SNgD679');
 
-app.post("/create-payment-intent", async (req, res) => {
+app.post("/create-payment-intent", (req, res) => {
     res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
