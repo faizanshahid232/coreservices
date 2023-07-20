@@ -88,7 +88,7 @@ app.post("/create-payment-intent", async (req, res) => {
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
     res.setHeader("Content-Type", "application/json")
-    const items = req.body;
+    const items = req.body.items;
       // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({
       amount: calculateOrderAmount(items),
