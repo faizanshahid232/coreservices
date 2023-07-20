@@ -132,7 +132,7 @@ app.post("/create-payment-intent", async (req, res) => {
     .then((response) => response.json())
     .then(data => {
         console.log(data);
-        res.send(data)
+        res.status(200).json(data)
     })
     
 })
@@ -162,7 +162,7 @@ app.post('/cors-post-email', (req, res) => {
     .then((response) => response.json())
     .then(data => {
         console.log(data);
-        res.send(data)
+        res.status(200).json(data)
     })
     
 })
