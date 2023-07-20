@@ -110,6 +110,16 @@ app.post("/create-payment-intent", async (req, res) => {
 
   app.post('/cors-post', (req, res) => {
     res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
+    
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    // another common pattern
+    // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    )
     const url = 'https://carboncompensate.climatepositive.com/api/v1/calculate';
     fetch(url, {
         method: "POST",
@@ -129,6 +139,16 @@ app.post("/create-payment-intent", async (req, res) => {
 
 app.post('/cors-post-email', (req, res) => {
     res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
+    
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    // another common pattern
+    // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    )
     console.log(req.body);
     const url = 'https://carboncompensate.climatepositive.com/api/v1/vend';
     fetch(url, {
