@@ -76,7 +76,7 @@ app.get('/cors', (req, res) => {
 
 const stripe = require("stripe")('sk_test_51NOz1fIi4beyPjru1XAPSAdxY1x8zH8fJMOghajQGbgq2SVgE3R2tLTj8fhoZ8kCJHq7wX0PKgstks4S6NUBwRYA006SNgD679');
 
-app.post("/create-payment-intent", (req, res) => {
+app.post("/create-payment-intent", async (req, res) => {
     res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -88,9 +88,8 @@ app.post("/create-payment-intent", (req, res) => {
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
     const { items } = req.body;
-      res.status(200).json({items});
       // Create a PaymentIntent with the order amount and currency
-    /*const paymentIntent = await stripe.paymentIntents.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: calculateOrderAmount(items),
       currency: "usd",
       automatic_payment_methods: {
@@ -101,7 +100,7 @@ app.post("/create-payment-intent", (req, res) => {
     res.status(200).json({
       clientSecret: paymentIntent.client_secret,
       
-    });*/
+    });
   });
 
 app.listen(5000, () => {
