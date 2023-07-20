@@ -63,7 +63,7 @@ app.get('/cors', (req, res) => {
     .then((response) => response.json())
     .then(data => {
         console.log(data);
-        res.send('This has CORS enabled 🎈'+ data)
+        res.status(200).json('This has CORS enabled 🎈'+ data)
     })
     
 });
