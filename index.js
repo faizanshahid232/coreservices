@@ -30,7 +30,8 @@ const handler = (req, res) => {
   const d = new Date()
   res.end(d.toString())
 }
-module.exports = allowCors(handler)
+
+
 
 
 var whitelist = [
@@ -117,4 +118,5 @@ app.listen(5000, () => {
     console.log("Running on port 5000.");
 });
 
+module.exports = allowCors(handler);
 module.exports = app;
