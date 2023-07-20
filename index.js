@@ -9,9 +9,8 @@ app.use(express.static('public'));
 app.use(express.static("public"));
 app.use(express.json());
 
-//https://payment-ten-sooty.vercel.app/
 var whitelist = [
-    '*',
+    'https://payment-ten-sooty.vercel.app/',
 ];
 var corsOptions = {
     origin: function(origin, callback){
@@ -50,6 +49,23 @@ const calculateOrderAmount = (items) => {
 
 app.get('/ingredients', cors(), (req, res, next) =>{
     res.send(ingredients);
+});
+
+app.get('/cors', (req, res) => {
+    res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
+    
+    const url = 'https://carboncompensate.starcb.com/api/v1';
+    fetch(url, {
+        headers: {
+            "Authorization": "CPF5A58B2108704667ACABF945230F0D61:WQ3ibsd3EQfNuvQmoLR5ygrd8mCUVfSuk47fufXs8Jnziu5fIeXFDXVFPPhJRiq2",
+        },
+    })
+    .then((response) => response.json())
+    .then(data => {
+        console.log(data);
+        res.send('This has CORS enabled 🎈'+ data)
+    })
+    
 });
 
 const stripe = require("stripe")('sk_test_51NOz1fIi4beyPjru1XAPSAdxY1x8zH8fJMOghajQGbgq2SVgE3R2tLTj8fhoZ8kCJHq7wX0PKgstks4S6NUBwRYA006SNgD679');
