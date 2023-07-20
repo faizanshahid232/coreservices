@@ -108,6 +108,44 @@ app.post("/create-payment-intent", async (req, res) => {
     });
   });
 
+  app.post('/cors-post', (req, res) => {
+    res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
+    const url = 'https://carboncompensate.climatepositive.com/api/v1/calculate';
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": "CPF5A58B2108704667ACABF945230F0D61:WQ3ibsd3EQfNuvQmoLR5ygrd8mCUVfSuk47fufXs8Jnziu5fIeXFDXVFPPhJRiq2",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(req.body.json),
+    })
+    .then((response) => response.json())
+    .then(data => {
+        console.log(data);
+        res.send(data)
+    })
+    
+})
+
+app.post('/cors-post-email', (req, res) => {
+    res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
+    console.log(req.body);
+    const url = 'https://carboncompensate.climatepositive.com/api/v1/vend';
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": "CPF5A58B2108704667ACABF945230F0D61:WQ3ibsd3EQfNuvQmoLR5ygrd8mCUVfSuk47fufXs8Jnziu5fIeXFDXVFPPhJRiq2",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(req.body.mergedObj),
+    })
+    .then((response) => response.json())
+    .then(data => {
+        console.log(data);
+        res.send(data)
+    })
+    
+})
 app.listen(5000, () => {
     console.log("Running on port 5000.");
 });
