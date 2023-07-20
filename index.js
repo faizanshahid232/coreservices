@@ -89,8 +89,9 @@ app.post("/create-payment-intent", async (req, res) => {
     )
     const { items } = req.body;
       console.log("here1", items);
-    // Create a PaymentIntent with the order amount and currency
-    const paymentIntent = await stripe.paymentIntents.create({
+      res.status(200).json({items});
+      // Create a PaymentIntent with the order amount and currency
+    /*const paymentIntent = await stripe.paymentIntents.create({
       amount: calculateOrderAmount(items),
       currency: "usd",
       automatic_payment_methods: {
@@ -101,7 +102,7 @@ app.post("/create-payment-intent", async (req, res) => {
     res.status(200).json({
       clientSecret: paymentIntent.client_secret,
       
-    });
+    });*/
   });
 
 app.listen(5000, () => {
