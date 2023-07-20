@@ -2,14 +2,16 @@ const express = require('express');
 const app = express();
 app.listen(process.env.PORT || 3000);
 const cors = require('cors');
+app.use(express.static('public'));
 // This is your test secret API key.
 
 
 app.use(express.static("public"));
 app.use(express.json());
 
+//https://payment-ten-sooty.vercel.app/
 var whitelist = [
-    'https://payment-ten-sooty.vercel.app/',
+    '*',
 ];
 var corsOptions = {
     origin: function(origin, callback){
