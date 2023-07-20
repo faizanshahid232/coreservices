@@ -76,7 +76,7 @@ app.get('/cors', (req, res) => {
 
 const stripe = require("stripe")('sk_test_51NOz1fIi4beyPjru1XAPSAdxY1x8zH8fJMOghajQGbgq2SVgE3R2tLTj8fhoZ8kCJHq7wX0PKgstks4S6NUBwRYA006SNgD679');
 
-app.post("/create-payment-intent", async (req, res) => {
+app.post("/create-payment-intent", (req, res) => {
     res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -88,10 +88,10 @@ app.post("/create-payment-intent", async (req, res) => {
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
     res.setHeader("Content-Type", "application/json")
-    console.log("request body"+ req.body);
-    const {items} = req.body;
+    //console.log("request body"+ req.body);
+    //const {items} = req.body;
       // Create a PaymentIntent with the order amount and currency
-    req.status(200).json(items);
+    req.status(200).json(req.body);
     /*const paymentIntent = await stripe.paymentIntents.create({
       amount: items,
       currency: "usd",
