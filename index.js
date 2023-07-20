@@ -78,7 +78,7 @@ const stripe = require("stripe")('sk_test_51NOz1fIi4beyPjru1XAPSAdxY1x8zH8fJMOgh
 
 app.post("/create-payment-intent", async (req, res) => {
     res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
-    /*res.setHeader('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
     // another common pattern
     // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
@@ -89,10 +89,10 @@ app.post("/create-payment-intent", async (req, res) => {
     )
     res.setHeader("Content-Type", "application/json")
     console.log("request body"+ req.body);
-    */const {items} = req.body;
+    const {items} = req.body;
       // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: calculateOrderAmount(items),
+      amount: 1400,//calculateOrderAmount(items),
       currency: "usd",
       automatic_payment_methods: {
         enabled: true,
