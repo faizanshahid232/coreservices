@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
-app.listen(process.env.PORT || 3000);
+//app.listen(process.env.PORT || 3000);
 const cors = require('cors');
 app.use(express.static('public'));
 // This is your test secret API key.
-app.use(express.static("public"));
+//app.use(express.static("public"));
 app.use(express.json());
 
 var whitelist = [
     'https://payment-ten-sooty.vercel.app/',
+    'http://localhost:3001/'
 ];
 var corsOptions = {
     origin: function(origin, callback){
@@ -17,7 +18,7 @@ var corsOptions = {
     },
     credentials: true
 };
-app.use(cors(corsOptions));
+app.use(cors());
 
 const calculateOrderAmount = (items) => {
     // Replace this constant with a calculation of the order's amount
@@ -77,7 +78,9 @@ app.get('/cors', (req, res) => {
 const stripe = require("stripe")('sk_test_51NOz1fIi4beyPjru1XAPSAdxY1x8zH8fJMOghajQGbgq2SVgE3R2tLTj8fhoZ8kCJHq7wX0PKgstks4S6NUBwRYA006SNgD679');
 
 app.post("/create-payment-intent", async (req, res) => {
+    console.log("request body",req.body);
     res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
+    
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
     // another common pattern
@@ -88,11 +91,11 @@ app.post("/create-payment-intent", async (req, res) => {
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
     res.setHeader("Content-Type", "application/json")
-    console.log("request body");
-    // const {items} = req.body;
+    
+     const {items} = req.body;
       // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: req.body.items,
+      amount: items,
       currency: "usd",
       automatic_payment_methods: {
         enabled: true,
