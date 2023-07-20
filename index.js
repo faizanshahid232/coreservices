@@ -51,7 +51,15 @@ app.get('/ingredients', cors(), (req, res, next) =>{
 
 app.get('/cors', (req, res) => {
     res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
-    
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    // another common pattern
+    // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    )
     const url = 'https://carboncompensate.starcb.com/api/v1';
     fetch(url, {
         headers: {
@@ -70,6 +78,15 @@ const stripe = require("stripe")('sk_test_51NOz1fIi4beyPjru1XAPSAdxY1x8zH8fJMOgh
 
 app.post("/create-payment-intent", cors(), async (req, res) => {
     res.set('Access-Control-Allow-Origin', 'https://payment-ten-sooty.vercel.app/');
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    // another common pattern
+    // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    )
     const { items } = req.body;
       console.log("here1", items);
     // Create a PaymentIntent with the order amount and currency
